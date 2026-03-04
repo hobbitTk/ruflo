@@ -371,9 +371,14 @@ export function sanitizeHtml(input: string): string {
  * Sanitizes a path by removing traversal patterns
  */
 export function sanitizePath(input: string): string {
-  return input
-    .replace(/\0/g, '')           // Remove null bytes
-    .replace(/\.\./g, '')         // Remove traversal patterns
+  let sanitized = input.replace(/\0/g, ''); // Remove null bytes
+  // Iteratively remove traversal patterns to prevent ....// bypass
+  let prev = '';
+  while (prev !== sanitized) {
+    prev = sanitized;
+    sanitized = sanitized.replace(/\.\./g, '');
+  }
+  return sanitized
     .replace(/\/+/g, '/')         // Normalize slashes
     .replace(/^\//, '')           // Remove leading slash
     .trim();
