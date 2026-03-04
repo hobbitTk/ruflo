@@ -41,9 +41,9 @@
     "bun:publish:v3alpha": "cd claude-flow && bun publish --tag v3alpha"
   },
   "devDependencies": {
-    "@types/node": "20.0.0",
+    "@types/node": "20.11.0",
     "@vitest/coverage-v8": "4.0.16",
-    "typescript": "5.3.0",
+    "typescript": "5.3.3",
     "vitest": "4.0.16"
   },
   "engines": {
